@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import RequestContext
-from app.models import Curso, Vestibular
+from app.models import Curso, Vestibular, Inscritos
 from datetime import datetime
 
 def home(request):
@@ -54,7 +54,7 @@ def cadastro_cursos(request):
         context_instance = RequestContext(request,
         {
             'title':'Cadastro de cursos',
-#            'cursos': ['ADS' , 'SI', 'CC'],
+            'cursos': ['ADS' , 'SI', 'CC'],
             'cursos': Curso.objects.all(),
             'year':datetime.now().year,
         })
@@ -70,4 +70,18 @@ def cadastro_vestibulares(request):
             'vestibulares': Vestibular.objects.all(),
             'year':datetime.now().year,
         })
+)
+
+def cadastro_inscritos(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+    request,
+    'app/cadastro_inscritos.html',
+    context_instance = RequestContext(request,
+    {
+        'title':'Cadastro de Inscritos',
+        'inscritos': Inscritos.objects.all(),
+        'year':datetime.now().year,
+    })
+
 )
