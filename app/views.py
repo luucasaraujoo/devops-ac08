@@ -80,7 +80,7 @@ def cadastro_inscritos(request):
     context_instance = RequestContext(request,
     {
         'title':'Cadastro de Inscritos',
-        'inscritos': Inscrito.objects.all(),
+        'inscritos': Inscritos.objects.all(),
         'year':datetime.now().year,
     })
 
